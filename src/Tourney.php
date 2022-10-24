@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace Tourney;
 
-use App\Generators\DefaultGenerator;
-use App\Generators\Generator;
-use App\Turn\GameTurn;
-use App\Turn\RestTurn;
+use Tourney\Generators\DefaultGenerator;
+use Tourney\Generators\Generator;
+use Tourney\Models\Tournament;
+use Tourney\Models\Turn;
+use Tourney\Turn\GameTurn;
+use Tourney\Turn\RestTurn;
 
 class Tourney
 {
@@ -18,22 +20,22 @@ class Tourney
         $this->generator = new DefaultGenerator();
     }
 
-    public function generate(array $participants, int $startCounterFrom = 1): array
+    public function generate(array $participants, int $startCounterFrom = 1): Tournament
     {
         if (count($participants) < 3 || count($participants) > 30) {
             throw new \InvalidArgumentException("Participants must be between 3 and 30");
         }
 
-        $tourney = $this->generator->generate(
+        $tours = $this->generator->generate(
             participants: $participants,
         );
 
         $gameCounter = $startCounterFrom;
 
-        foreach ($tourney as $index => $turns) {
-            $turn = new Turn($index);
+        foreach ($tours as $index => $turn) {
+            $turnModel = new Turn($index);
 
-            foreach ($turns as $gameIndex => $game) {
+            foreach ($turn as $gameIndex => $game) {
                 if ($this->isRestingTurn($game)) {
                     $turnGame = $this->addRestTurn($game);
                 } else {
@@ -41,13 +43,13 @@ class Tourney
                     $gameCounter++;
                 }
 
-                $turn->addGame($turnGame, $gameIndex + 1);
+                $turnModel->addGame($turnGame, $gameIndex + 1);
             }
 
-            $tourney[$index] = $turn;
+            $tours[$index] = $turnModel;
         }
 
-        return $tourney;
+        return new Tournament(turns: $tours);
     }
 
     protected function isFakeParticipant($participant): bool

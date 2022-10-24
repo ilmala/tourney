@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Turn;
+namespace Tourney\Turn;
 
-use App\Team;
+use Tourney\Models\Team;
 
 class RestTurn
 {

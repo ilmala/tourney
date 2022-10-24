@@ -2,7 +2,7 @@
     "name": "luca.malattia/team-calendar",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Tourney\\": "src/"
         }
     },
     "authors": [

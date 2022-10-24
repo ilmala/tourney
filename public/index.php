@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Tourney\Tourney;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 $teamNames = [
@@ -18,22 +20,22 @@ $teamNames = [
 
 $teams = [];
 for ($i = 0; $i < count($teamNames); $i++) {
-    $teams[$i] = new \App\Team(name: $teamNames[$i], key: $i+1);
+    $teams[$i] = new \Tourney\Models\Team(name: $teamNames[$i], key: $i + 1);
 }
 
-$calendarGenerator = new \App\Tourney();
-$calendar = $calendarGenerator->generate(
+$tourney = new Tourney();
+$tournament = $tourney->generate(
     participants: $teams,
-    startCounterFrom: 100,
+//startCounterFrom: 100,
 );
 
 $teamsCount = count($teams);
 echo "{$teamsCount} teams <br><br>";
 
-foreach ($calendar as $turn) {
+foreach ($tournament->turns() as $turn) {
     echo "Turn {$turn->number()}<br>";
     foreach ($turn->games() as $game) {
-            echo "{$game->description()}<br>";
+        echo "{$game->description()}<br>";
     }
     echo "<br>";
 }

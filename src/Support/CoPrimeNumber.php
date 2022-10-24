@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Support;
+namespace Tourney\Support;
 
 /**
  * Co-prime numbers are pairs of numbers that do not have any common factor other than 1. There should be a minimum of two numbers to form a set of co-prime numbers. Such numbers have only 1 as their highest common factor, for example, (4 and 7), (5, 7, 9) are co-prime numbers. It is to be noted that co-prime numbers need not be prime numbers always. Two composite numbers like 4 and 9 also form a pair of co-primes.

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Turn;
+namespace Tourney\Turn;
 
-use App\Team;
+use Tourney\Models\Team;
 
 class GameTurn
 {
@@ -33,7 +33,7 @@ class GameTurn
 
     public function description(): string
     {
-        return "n°{$this->number()} - {$this->homeTeam()} vs {$this->awayTeam()}";
+        return "Game {$this->number()} - {$this->homeTeam()} vs {$this->awayTeam()}";
     }
 
     public function __toString(): string

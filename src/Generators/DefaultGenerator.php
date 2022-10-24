@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Generators;
+namespace Tourney\Generators;
 
-use App\Support\CoPrimeNumber;
+use Tourney\Support\CoPrimeNumber;
 
 class DefaultGenerator implements Generator
 {
