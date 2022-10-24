@@ -13,12 +13,14 @@ class Team
     {
     }
 
-    /**
-     * @return string
-     */
     public function name(): string
     {
         return $this->name;
+    }
+
+    public function key(): mixed
+    {
+        return $this->key;
     }
 
     public function __toString(): string

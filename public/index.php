@@ -19,8 +19,11 @@ $teamNames = [
 ];
 
 $teams = [];
-for ($i = 0; $i < count($teamNames); $i++) {
-    $teams[$i] = new \Tourney\Models\Team(name: $teamNames[$i], key: $i + 1);
+foreach ($teamNames as $index=> $teamName) {
+    $teams[$index] = new \Tourney\Models\Team(
+        name: $teamName,
+        key: $index + 1
+    );
 }
 
 $tourney = new Tourney();
