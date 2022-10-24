@@ -10,33 +10,34 @@ class GameTurn
 {
     public function __construct(
         protected int $number,
-        protected Team $homeTeam,
-        protected Team $awayTeam,
+        protected string|Team $homeTeam,
+        protected string|Team $awayTeam,
     )
     {
     }
 
-    /**
-     * @return int
-     */
-    public function getNumber(): int
+    public function number(): int
     {
         return $this->number;
     }
 
-    /**
-     * @return Team
-     */
-    public function getHomeTeam(): Team
+    public function homeTeam(): string|Team
     {
         return $this->homeTeam;
     }
 
-    /**
-     * @return Team
-     */
-    public function getAwayTeam(): Team
+    public function awayTeam(): string|Team
     {
         return $this->awayTeam;
+    }
+
+    public function description(): string
+    {
+        return "n°{$this->number()} - {$this->homeTeam()} vs {$this->awayTeam()}";
+    }
+
+    public function __toString(): string
+    {
+        return $this->description();
     }
 }

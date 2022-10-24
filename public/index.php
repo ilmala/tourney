@@ -18,7 +18,7 @@ $teamNames = [
 
 $teams = [];
 for ($i = 0; $i < count($teamNames); $i++) {
-    $teams[$i] = new \App\Team($i+1, $teamNames[$i]);
+    $teams[$i] = new \App\Team(name: $teamNames[$i], key: $i+1);
 }
 
 $calendarGenerator = new \App\Tourney();
@@ -33,11 +33,7 @@ echo "{$teamsCount} teams <br><br>";
 foreach ($calendar as $turn) {
     echo "Turn {$turn->number()}<br>";
     foreach ($turn->games() as $game) {
-        if($game instanceof \App\Turn\RestTurn){
-            echo "[] - Rest {$game->getRestTeam()->getName()}<br>";
-        }else{
-            echo "[{$game->getNumber()}] - {$game->getHomeTeam()->getName()} vs {$game->getAwayTeam()->getName()}<br>";
-        }
+            echo "{$game->description()}<br>";
     }
     echo "<br>";
 }

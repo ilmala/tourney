@@ -7,25 +7,22 @@ namespace App;
 class Team
 {
     public function __construct(
-        protected int $number,
-        protected string $name
+        protected string $name,
+        protected mixed  $key
     )
     {
     }
 
     /**
-     * @return int
-     */
-    public function getNumber(): int
-    {
-        return $this->number;
-    }
-
-    /**
      * @return string
      */
-    public function getName(): string
+    public function name(): string
     {
         return $this->name;
+    }
+
+    public function __toString(): string
+    {
+        return  "{$this->name()} ({$this->key})";
     }
 }
