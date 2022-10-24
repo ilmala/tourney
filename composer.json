@@ -1,0 +1,20 @@
+{
+    "name": "luca.malattia/team-calendar",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "luca.malattia",
+            "email": "luca.malattia@immobiliare.it"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.1"
+    }
+}
