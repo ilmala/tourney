@@ -49,7 +49,10 @@ class Tourney
             $tours[$index] = $turnModel;
         }
 
-        return new Tournament(turns: $tours);
+        return new Tournament(
+            participants: $participants,
+            turns: $tours
+        );
     }
 
     protected function isFakeParticipant($participant): bool

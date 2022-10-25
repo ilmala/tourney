@@ -2,38 +2,32 @@
 
 declare(strict_types=1);
 
+use Tourney\Support\ParticipantsCollection;
 use Tourney\Tourney;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $teamNames = [
-    'Bayern Monaco',
-    'Olimpia Milano',
-    'Partizan',
-    'Virtus Bologna',
-    'Olympiacos',
-    'Anadolu Efes',
-    'Alba Berlino',
-    'Real Madrid',
-    'Barcellona',
+    'BM-01'=>'Bayern Monaco',
+    'OM-02'=>'Olimpia Milano',
+    'PZ-03'=>'Partizan',
+    'VB-04'=>'Virtus Bologna',
+    'OL-05'=>'Olympiacos',
+    'AE-06'=>'Anadolu Efes',
+    'AB-07'=>'Alba Berlino',
+    'RM-08'=>'Real Madrid',
+    'BR-09'=>'Barcellona',
 ];
 
-$teams = [];
-foreach ($teamNames as $index=> $teamName) {
-    $teams[$index] = new \Tourney\Models\Team(
-        name: $teamName,
-        key: $index + 1
-    );
-}
+$participants = ParticipantsCollection::makeFromArray($teamNames);
 
 $tourney = new Tourney();
 $tournament = $tourney->generate(
-    participants: $teams,
-//startCounterFrom: 100,
+    participants: $participants->collection()->toArray(),
+    startCounterFrom: 100,
 );
 
-$teamsCount = count($teams);
-echo "{$teamsCount} teams <br><br>";
+echo "{$tournament->participants()->count()} teams - {$tournament->turns()->count()} Turns <br><br>";
 
 foreach ($tournament->turns() as $turn) {
     echo "Turn {$turn->number()}<br>";
