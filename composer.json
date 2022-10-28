@@ -1,22 +1,45 @@
 {
-    "name": "luca.malattia/team-calendar",
+    "name": "ilmala/tourney",
+    "description": "A simple random tournament generator",
+    "keywords": [],
+    "homepage": "https://github.com/ilmala/tourney",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "luca.malattia",
+            "email": "luca.malattia@immobiliare.it",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/collections": "^9.36",
+        "illuminate/support": "^9.36"
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.22"
+    },
     "autoload": {
         "psr-4": {
             "Tourney\\": "src/"
         }
     },
-    "authors": [
-        {
-            "name": "luca.malattia",
-            "email": "luca.malattia@immobiliare.it"
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
         }
-    ],
-    "require": {
-        "php": "^8.1",
-        "illuminate/support": "^9.36",
-        "illuminate/collections": "^9.36"
     },
-    "require-dev": {
-        "symfony/var-dumper": "^6.1"
-    }
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
